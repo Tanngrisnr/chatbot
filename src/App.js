@@ -1,6 +1,7 @@
 import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
 import sigmalogo from "./images/sigmalogo.png";
+import { useState } from "react";
 
 const Global = createGlobalStyle`
 
@@ -25,17 +26,161 @@ const Global = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     background: #00354E;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    background-size: cover;
   }
 
-#frame-content {
-  background:red ;
+  .snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+  z-index: 1;
 }
 
-  h1 {
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+
+
+
+
+
+.animate {
+    animation: falling 5.5s infinite ease-in;
+}
+
+
+
+.line{
+  text-align: center;
+  margin:0;
+}
+
+li {
+    position: relative;
+    margin: 0 15px;
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    width: 12px;
+    height: 28px;
+    border-radius: 50%;
+    top: 35px;
+    background: #fff;
+    &:before {
+        content: "";
+        position: absolute;
+        background: #222;
+        width: 10px;
+        height: 9px;
+        border-radius: 3px;
+        top: -4px;
+        left: 1px;
+    }
+    &:after {
+        content: "";
+        top: -14px;
+        left: 9px;
+        position: absolute;
+        width: 52px;
+        height: 19px;
+        border-bottom: solid #222 2px;
+        border-radius: 30%;
+    }
+}
+
+.red {
+    background-color: #fb4545;
+    animation: lightningRed 1s infinite;
+}
+
+.green {
+    background-color: #24D024;
+    animation: lightningGreen 0.8s infinite;
+}
+
+.yellow {
+    background-color: #fff952;
+    animation: lightningYellow 0.9s infinite;
+}
+
+.blue {
+    background-color: #0A53DE;
+    animation: lightningBlue 1.1s infinite;
+}
+
+.pink {
+    background-color: #f53896;
+    animation: lightningPink 1.2s infinite;
+}
+
+@keyframes lightningRed {
+    0% {
+        box-shadow: 5px 10px 35px 10px #fb4545;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 10px 35px 10px #fb4545;
+    }
+}
+
+@keyframes lightningGreen {
+    0% {
+        box-shadow: 5px 0 35px 10px #24D024;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #24D024;
+    }
+}
+
+@keyframes lightningYellow {
+    0% {
+        box-shadow: 5px 0 35px 10px #fff952;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #fff952;
+    }
+}
+
+@keyframes lightningBlue {
+    0% {
+        box-shadow: 5px 0 35px 10px #0A53DE;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #0A53DE;
+    }
+}
+
+@keyframes lightningPink {
+    0% {
+        box-shadow: 5px 0 35px 10px #f53896;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #f53896;
+    }
+}
+
+@media (max-width: 1024px) {
+  .line{
+    padding: 0; 
+  }
+    li {
+        margin: 0 15px 20px 15px;
+    }
+}
+
+h1 {
     text-align: center;
     width: 100%;
     color: white;
@@ -72,10 +217,7 @@ const Header = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 0;
   width: 100%;
-  position: fixed;
   background: #e30613;
   z-index: 9;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -1px,
@@ -96,13 +238,58 @@ function App() {
   return (
     <>
       <Global />
+      <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+      </div>
+
       <Header>
         <figure>
           <img src={sigmalogo} alt="sigma's logo" />
           <h3>Receptionist</h3>
         </figure>
       </Header>
-      <Main></Main>
+      <div class="lights-container">
+        <div class="light">
+          <ul class="line">
+            <li class="red"></li>
+            <li class="yellow"></li>
+            <li class="blue"></li>
+            <li class="pink"></li>
+            <li class="red"></li>
+            <li class="green"></li>
+            <li class="blue"></li>
+            <li class="yellow"></li>
+            <li class="red"></li>
+            <li class="pink"></li>
+            <li class="blue"></li>
+            <li class="yellow"></li>
+            <li class="red"></li>
+            <li class="green"></li>
+            <li class="blue"></li>
+            <li class="yellow"></li>
+            <li class="red"></li>
+            <li class="pink"></li>
+            <li class="green"></li>
+            <li class="blue"></li>
+            <li class="pink"></li>
+            <li class="red"></li>
+            <li class="green"></li>
+            <li class="blue"></li>
+          </ul>
+        </div>
+      </div>
+      <Main>
+        <div id="myLandbot" style={{ width: "150px", height: "500px" }}></div>
+      </Main>
     </>
   );
 }

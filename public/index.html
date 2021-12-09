@@ -9,16 +9,6 @@
   <meta name="description" content="Web site created using create-react-app" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
   <script SameSite="None; Secure" src=https://static.landbot.io/landbot-3/landbot-3.0.0.js></script>
-
-  <script>
-
-    var myLandbot = new Landbot.Livechat({
-
-      configUrl: 'https://chats.landbot.io/v3/H-1065889-LSEK21O7QRFYR731/index.json',
-
-    });
-
-  </script>
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -50,6 +40,17 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+
+    var myLandbot = new Landbot.Container({
+
+      container: '#myLandbot',
+
+      configUrl: 'https://chats.landbot.io/v3/H-1065889-LSEK21O7QRFYR731/index.json',
+
+    });
+
+  </script>
 </body>
 
 </html>
