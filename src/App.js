@@ -1,6 +1,8 @@
 import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
 import sigmalogo from "./images/sigmalogo.png";
+import gift from "./images/gift.svg";
+import useSound from "use-sound";
 import { useState } from "react";
 
 const Global = createGlobalStyle`
@@ -209,6 +211,9 @@ const Main = styled.main`
   margin: 5% auto;
   justify-content: center;
   align-items: center;
+  & > * {
+    margin: 2%;
+  }
 `;
 const Header = styled.header`
   color: white;
@@ -218,6 +223,7 @@ const Header = styled.header`
   align-items: center;
   justify-content: center;
   width: 100%;
+
   background: #e30613;
   z-index: 9;
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -1px,
@@ -227,6 +233,7 @@ const Header = styled.header`
     width: 20%;
     img {
       width: 100%;
+      height: auto;
     }
   }
   h3 {
@@ -234,61 +241,114 @@ const Header = styled.header`
   }
 `;
 
+const Gift = styled.button`
+  max-width: 100px;
+  color: white;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > * {
+    margin: 0;
+  }
+  figure {
+    width: 100%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  p {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+`;
+
 function App() {
+  const [collapse, setCollapse] = useState(true);
+
+  const handleCollapse = () => {
+    setCollapse(!collapse);
+  };
+
   return (
     <>
       <Global />
-      <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❄</div>
+      <div className="snowflakes" aria-hidden="true">
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
       </div>
 
       <Header>
         <figure>
           <img src={sigmalogo} alt="sigma's logo" />
-          <h3>Receptionist</h3>
         </figure>
       </Header>
-      <div class="lights-container">
-        <div class="light">
-          <ul class="line">
-            <li class="red"></li>
-            <li class="yellow"></li>
-            <li class="blue"></li>
-            <li class="pink"></li>
-            <li class="red"></li>
-            <li class="green"></li>
-            <li class="blue"></li>
-            <li class="yellow"></li>
-            <li class="red"></li>
-            <li class="pink"></li>
-            <li class="blue"></li>
-            <li class="yellow"></li>
-            <li class="red"></li>
-            <li class="green"></li>
-            <li class="blue"></li>
-            <li class="yellow"></li>
-            <li class="red"></li>
-            <li class="pink"></li>
-            <li class="green"></li>
-            <li class="blue"></li>
-            <li class="pink"></li>
-            <li class="red"></li>
-            <li class="green"></li>
-            <li class="blue"></li>
+      <div className="lights-container">
+        <div className="light">
+          <ul className="line">
+            <li className="red"></li>
+            <li className="yellow"></li>
+            <li className="blue"></li>
+            <li className="pink"></li>
+            <li className="red"></li>
+            <li className="green"></li>
+            <li className="blue"></li>
+            <li className="yellow"></li>
+            <li className="red"></li>
+            <li className="pink"></li>
+            <li className="blue"></li>
+            <li className="yellow"></li>
+            <li className="red"></li>
+            <li className="green"></li>
+            <li className="blue"></li>
+            <li className="yellow"></li>
+            <li className="red"></li>
+            <li className="pink"></li>
+            <li className="green"></li>
+            <li className="blue"></li>
+            <li className="pink"></li>
+            <li className="red"></li>
+            <li className="green"></li>
+            <li className="blue"></li>
           </ul>
         </div>
       </div>
       <Main>
-        <div id="myLandbot" style={{ width: "150px", height: "500px" }}></div>
+        <h1>Välkommen!</h1>
+        {collapse && (
+          <Gift onClick={handleCollapse}>
+            <figure>
+              <img src={gift} alt="a wrapped gift" />
+            </figure>
+            <p>Klicka Här</p>
+          </Gift>
+        )}
+        <div
+          id="myLandbot"
+          style={{
+            width: collapse ? "0" : "400px",
+            height: collapse ? "0" : "500px",
+            transition: "height .25s ease-out",
+          }}
+        ></div>
+        {!collapse && (
+          <Gift onClick={handleCollapse}>
+            <p>Stäng</p>
+          </Gift>
+        )}
       </Main>
     </>
   );
