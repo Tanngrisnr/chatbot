@@ -2,7 +2,7 @@ import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
 import sigmalogo from "./images/sigmalogo.png";
 import gift from "./images/gift.svg";
-import christmassong from "./sound/christmassong.mp3";
+import sleighbells3 from "./sound/sleighbells3.wav";
 import useSound from "use-sound";
 import { useState, useEffect } from "react";
 
@@ -272,7 +272,7 @@ const Gift = styled.button`
 
 function App() {
   const [collapse, setCollapse] = useState(true);
-  const [play] = useSound(christmassong);
+  const [play] = useSound(sleighbells3);
 
   const handleCollapse = () => {
     setCollapse(!collapse);
