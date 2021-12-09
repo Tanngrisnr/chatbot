@@ -2,8 +2,9 @@ import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
 import sigmalogo from "./images/sigmalogo.png";
 import gift from "./images/gift.svg";
+import christmassong from "./sound/christmassong.mp3";
 import useSound from "use-sound";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Global = createGlobalStyle`
 
@@ -242,6 +243,7 @@ const Header = styled.header`
 `;
 
 const Gift = styled.button`
+  margin: 5px;
   max-width: 100px;
   color: white;
   background: transparent;
@@ -270,9 +272,11 @@ const Gift = styled.button`
 
 function App() {
   const [collapse, setCollapse] = useState(true);
+  const [play] = useSound(christmassong);
 
   const handleCollapse = () => {
     setCollapse(!collapse);
+    play();
   };
 
   return (
@@ -339,8 +343,8 @@ function App() {
         <div
           id="myLandbot"
           style={{
-            width: collapse ? "0" : "400px",
-            height: collapse ? "0" : "500px",
+            width: collapse ? "0" : "500px",
+            height: collapse ? "0" : "650px",
             transition: "height .25s ease-out",
           }}
         ></div>
